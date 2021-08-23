@@ -5,6 +5,8 @@ signal player_fired_bullet(bullet, position, direction)
 export (PackedScene) var Bullet
 export (int) var speed = 100
 
+var health: int = 100
+
 onready var end_of_gun = $EndOfGun
 onready var gun_direction = $GunDirection
 onready var attack_cooldown = $AttackCooldown
@@ -44,3 +46,5 @@ func shoot():
 		attack_cooldown.start()
 		animation_player.play("muzzle_flash")
 
+func handle_hit():
+	health -= 20
