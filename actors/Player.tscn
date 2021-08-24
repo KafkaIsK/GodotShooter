@@ -26,6 +26,6 @@ shape = SubResource( 1 )
 [node name="Health" parent="." instance=ExtResource( 3 )]
 
 [node name="Weapon" parent="." instance=ExtResource( 1 )]
-position = Vector2( 22, 12 )
+position = Vector2( 14, 12 )
 
 [node name="Team" parent="." instance=ExtResource( 5 )]

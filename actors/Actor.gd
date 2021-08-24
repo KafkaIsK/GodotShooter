@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var health_stat = $Health
 onready var ai = $AI
-onready var weapon = $Weapon
+onready var weapon: Weapon = $Weapon
 onready var team = $Team
 
 export (int) var speed = 100
