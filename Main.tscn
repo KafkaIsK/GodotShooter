@@ -1,17 +1,21 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
 [ext_resource path="res://BulletManager.gd" type="Script" id=3]
 [ext_resource path="res://actors/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/Ally.tscn" type="PackedScene" id=5]
 [ext_resource path="res://CapturableBase.tscn" type="PackedScene" id=6]
-[ext_resource path="res://MapAI.gd" type="Script" id=7]
+[ext_resource path="res://MapAI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://CapturableBaseManager.gd" type="Script" id=8]
-[ext_resource path="res://Team.tscn" type="PackedScene" id=9]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 102.653, 299.071 )
+current = true
+process_mode = 0
+smoothing_enabled = true
 
 [node name="CapturableBaseManager" type="Node2D" parent="."]
 script = ExtResource( 8 )
@@ -24,44 +28,42 @@ position = Vector2( 1971.1, 342.341 )
 [node name="CapturableBase3" parent="CapturableBaseManager" instance=ExtResource( 6 )]
 position = Vector2( 1231.11, 338.566 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 102.653, 299.071 )
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
-process_mode = 0
-smoothing_enabled = true
-
-[node name="AllyMapAI" type="Node2D" parent="."]
-script = ExtResource( 7 )
-
-[node name="Team" parent="AllyMapAI" instance=ExtResource( 9 )]
-team = 1
-
-[node name="Ally" parent="AllyMapAI" instance=ExtResource( 5 )]
-position = Vector2( 331.807, 190.959 )
-
-[node name="Ally2" parent="AllyMapAI" instance=ExtResource( 5 )]
-position = Vector2( 286.963, 337.424 )
-
-[node name="Ally3" parent="AllyMapAI" instance=ExtResource( 5 )]
-position = Vector2( 279.231, 474.717 )
-
-[node name="EnemyMapAI" type="Node2D" parent="."]
-script = ExtResource( 7 )
-base_capture_start_order = 1
-
-[node name="Team" parent="EnemyMapAI" instance=ExtResource( 9 )]
-team = 2
-
-[node name="Enemy" parent="EnemyMapAI" instance=ExtResource( 4 )]
-position = Vector2( 2200, 478.247 )
-
-[node name="Enemy2" parent="EnemyMapAI" instance=ExtResource( 4 )]
-position = Vector2( 2229.27, 340.808 )
-
-[node name="Enemy3" parent="EnemyMapAI" instance=ExtResource( 4 )]
-position = Vector2( 2203.48, 193.813 )
-
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource( 3 )
+
+[node name="AllyMapAI" parent="." instance=ExtResource( 7 )]
+team_name = 1
+unit = ExtResource( 5 )
+
+[node name="EnemyMapAI" parent="." instance=ExtResource( 7 )]
+base_capture_start_order = 1
+team_name = 2
+unit = ExtResource( 4 )
+
+[node name="AllyRespawnPoints" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="AllyRespawnPoints"]
+position = Vector2( -84.9487, 198.213 )
+
+[node name="Position2D2" type="Position2D" parent="AllyRespawnPoints"]
+position = Vector2( -173.673, 249.183 )
+
+[node name="Position2D3" type="Position2D" parent="AllyRespawnPoints"]
+position = Vector2( -166.122, 330.356 )
+
+[node name="Position2D4" type="Position2D" parent="AllyRespawnPoints"]
+position = Vector2( -98.1629, 398.315 )
+
+[node name="EnemyRespawnPoints" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="EnemyRespawnPoints"]
+position = Vector2( 2678.71, 264.285 )
+
+[node name="Position2D2" type="Position2D" parent="EnemyRespawnPoints"]
+position = Vector2( 2761.77, 309.591 )
+
+[node name="Position2D3" type="Position2D" parent="EnemyRespawnPoints"]
+position = Vector2( 2769.33, 390.764 )
+
+[node name="Position2D4" type="Position2D" parent="EnemyRespawnPoints"]
+position = Vector2( 2650.4, 462.498 )

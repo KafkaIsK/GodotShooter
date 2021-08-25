@@ -1,6 +1,10 @@
 extends KinematicBody2D
 class_name Actor
 
+
+signal died
+
+
 onready var health_stat = $Health
 onready var ai = $AI
 onready var weapon: Weapon = $Weapon
@@ -32,4 +36,9 @@ func get_team() -> int:
 func handle_hit():
 	health_stat.health -= 20
 	if health_stat.health <= 0:
-		queue_free()
+		die()
+
+
+func die():
+	emit_signal("died")
+	queue_free()
