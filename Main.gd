@@ -7,7 +7,6 @@ onready var capturable_base_manager = $CapturableBaseManager
 onready var ally_ai = $AllyMapAI
 onready var enemy_ai = $EnemyMapAI
 onready var bullet_manager = $BulletManager
-onready var player: Player= $Player
 onready var camera = $Camera2D
 
 
