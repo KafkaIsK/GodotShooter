@@ -8,6 +8,7 @@ onready var ally_ai = $AllyMapAI
 onready var enemy_ai = $EnemyMapAI
 onready var bullet_manager = $BulletManager
 onready var camera = $Camera2D
+onready var gui = $GUI
 
 
 func _ready() -> void:
@@ -29,4 +30,6 @@ func spawn_player():
 	add_child(player)
 	player.set_camera_transform(camera.get_path())
 	player.connect("died", self, "spawn_player")
+	gui.set_new_health_value(player.health_stat.health)
+	gui.set_player(player)
 
