@@ -7,6 +7,10 @@ var half_cell_size: Vector2
 var used_rect: Rect2
 
 
+func _physics_process(delta: float) -> void:
+	update_navigation_map()
+
+
 func create_navigation_map(tilemap: TileMap):
 	self.tilemap = tilemap
 	half_cell_size = tilemap.cell_size / 2
@@ -36,6 +40,22 @@ func connect_traversablie_tiles(tiles: Array):
 					continue
 				
 				astar.connect_points(id, target_id, true)
+
+
+func update_navigation_map():
+	for point in astar.get_points():
+		astar.set_point_disabled(point, false)
+	
+	var obstacles = get_tree().get_nodes_in_group("obstacles")
+	for obstacle in obstacles:
+		if obstacle is TileMap:
+			var tiles = obstacle.get_used_cells()
+			for tile in tiles:
+				var id = get_id_for_point(tile)
+				if astar.has_point(id):
+					astar.set_point_disabled(id, true)
+		if obstacle is KinematicBody2D:
+			pass
 
 
 func get_id_for_point(point: Vector2):

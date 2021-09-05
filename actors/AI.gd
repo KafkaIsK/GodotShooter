@@ -36,10 +36,12 @@ func _physics_process(delta: float) -> void:
 	match current_state:
 		State.PATROL:
 			if not patrol_location_reached:
-				actor_velocity = actor.velocity_toward(patrol_location)
-				actor.move_and_slide(actor_velocity)
-				actor.rotate_toward(patrol_location)
-				if actor.has_reached_position(patrol_location):
+				var path = pathfinding.get_new_path(global_position, patrol_location)
+				if path.size() > 1:
+					actor_velocity = actor.velocity_toward(path[1])
+					actor.rotate_toward(path[1])
+					actor.move_and_slide(actor_velocity)
+				else:
 					patrol_location_reached = true
 					actor_velocity = Vector2.ZERO
 					patrol_timer.start()
@@ -52,12 +54,13 @@ func _physics_process(delta: float) -> void:
 			else:
 				print("ENGAGE STATE BUT NO TARGET/WEAPON")
 		State.ADVANCE:
-			if actor.has_reached_position(next_base):
-				set_state(State.PATROL)
-			else:
-				actor_velocity = actor.velocity_toward(next_base)
+			var path = pathfinding.get_new_path(global_position, next_base)
+			if path.size() > 1:
+				actor_velocity = actor.velocity_toward(path[1])
+				actor.rotate_toward(path[1])
 				actor.move_and_slide(actor_velocity)
-				actor.rotate_toward(next_base)
+			else:
+				set_state(State.PATROL)
 		_:
 			print("ERROR: ENEMY STATE NOT FOUND")
 
@@ -90,7 +93,7 @@ func handle_reload():
 
 
 func _on_PatrolTimer_timeout() -> void:
-	var patrol_range = 50
+	var patrol_range = 100
 	var random_x = rand_range(-patrol_range, patrol_range)
 	var random_y = rand_range(-patrol_range, patrol_range)
 	patrol_location = Vector2(random_x, random_y) + origin

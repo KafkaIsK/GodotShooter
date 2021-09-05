@@ -87,7 +87,7 @@ func spawn_unit(spawn_location: Vector2):
 func set_unit_ai_to_advance_to_next_base(unit: Actor):
 	if target_base != null:
 		var ai: AI = unit.ai
-		ai.next_base = target_base.global_position
+		ai.next_base = target_base.get_random_position_within_capture_radius()
 		ai.set_state(AI.State.ADVANCE)
 
 

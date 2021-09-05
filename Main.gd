@@ -23,8 +23,8 @@ func _ready() -> void:
 	pathfinding.create_navigation_map(ground)
 	
 	var bases = capturable_base_manager.get_capturable_bases()
-	ally_ai.initialize(bases, ally_respawns.get_children())
-	enemy_ai.initialize(bases, enemy_respawns.get_children())
+	ally_ai.initialize(bases, ally_respawns.get_children(), pathfinding)
+	enemy_ai.initialize(bases, enemy_respawns.get_children(), pathfinding)
 	
 	spawn_player()
 
