@@ -9,7 +9,7 @@ atlas = ExtResource( 3 )
 region = Rect2( 1484, 268, 40, 40 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 250, 250 )
+extents = Vector2( 200, 200 )
 
 [node name="CapturableBase" type="Area2D"]
 position = Vector2( 547.742, 334.79 )
