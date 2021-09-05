@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=2]
+[gd_scene load_steps=159 format=2]
 
 [ext_resource path="res://assets/kenney_topdown-shooter/Tilesheet/tilesheet_complete.png" type="Texture" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://CapturableBaseManager.gd" type="Script" id=8]
 [ext_resource path="res://assets/kenney_topdowntanksredux/Tilesheet/terrainTiles_default.png" type="Texture" id=9]
 [ext_resource path="res://UI/GUI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Pathfinding.gd" type="Script" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -1657,6 +1658,9 @@ position = Vector2( 102.653, 299.071 )
 current = true
 process_mode = 0
 smoothing_enabled = true
+
+[node name="Pathfinding" type="Node2D" parent="."]
+script = ExtResource( 11 )
 
 [node name="CapturableBaseManager" type="Node2D" parent="."]
 script = ExtResource( 8 )

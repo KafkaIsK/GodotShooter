@@ -25,6 +25,8 @@ var actor_velocity: Vector2 = Vector2.ZERO
 
 var next_base: Vector2 = Vector2.ZERO
 
+var pathfinding: Pathfinding
+
 
 func _ready() -> void:
 	set_state(State.PATROL)
