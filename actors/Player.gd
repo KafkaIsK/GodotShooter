@@ -8,7 +8,7 @@ export (int) var speed = 100
 
 
 onready var collision_shape = $CollisionShape2D
-onready var weapon: Weapon = $Weapon
+onready var weapon_manager = $WeaponManager
 onready var health_stat = $Health
 onready var team = $Team
 onready var camera_transform = $CameraTransform2D
@@ -32,19 +32,9 @@ func _physics_process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_released("shoot"): #can change to pressed
-		weapon.shoot()
-	elif event.is_action_released("reload"):
-		weapon.start_reload()
-
-
 func set_camera_transform(camera_path: NodePath):
 	camera_transform.remote_path = camera_path
 
-
-func reload():
-	weapon.start_reload()
 
 func get_team() -> int:
 	return team.team
