@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 			if target != null and weapon != null:
 				var angle_to_player = actor.global_position.direction_to(target.global_position).angle()
 				actor.rotate_toward(target.global_position)
-				if abs(actor.rotation - angle_to_player) < 0.1:
+				if abs(actor.global_position.angle_to(target.global_position)) < 0.1:
 					weapon.shoot()
 			else:
 				print("ENGAGE STATE BUT NO TARGET/WEAPON")

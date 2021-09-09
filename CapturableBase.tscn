@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://CapturableBase.gd" type="Script" id=1]
+[ext_resource path="res://UI/roboto_mono_36.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/kenney_topdown-shooter/Tilesheet/tilesheet_complete.png" type="Texture" id=3]
 [ext_resource path="res://Team.tscn" type="PackedScene" id=4]
 
@@ -26,6 +27,32 @@ shape = SubResource( 2 )
 [node name="CaptureTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="PlayerLabel" type="Label" parent="."]
+margin_left = -59.742
+margin_top = 1.20999
+margin_right = -19.742
+margin_bottom = 49.21
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.411765, 0.8, 0.439216, 1 )
+text = "1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemyLabel" type="Label" parent="."]
+margin_left = 12.258
+margin_top = 1.20999
+margin_right = 52.258
+margin_bottom = 49.21
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.435294, 0.443137, 0.72549, 1 )
+text = "3"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="body_entered" from="." to="." method="_on_CapturableBase_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_CapturableBase_body_exited"]
